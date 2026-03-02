@@ -18,7 +18,7 @@ export const WalletBalanceCard: React.FC<WalletBalanceCardProps> = ({
       </p>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <span className="text-5xl font-bold text-yellow-400">{balance}</span>
+          <span className="text-[56px] font-bold text-[#FACC15] font-(family-name:--font-playfair-display) leading-tight">{balance}</span>
           <p className="text-xs text-gray-400 mt-2">Wallet ID: {walletId}</p>
         </div>
       </div>

@@ -118,7 +118,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
           )}
         </div>
         {prize && (
-          <span className={`text-lg font-bold ${isWinner ? "text-yellow-400" : "text-gray-400"}`}>
+          <span className={`text-lg font-bold font-(family-name:--font-playfair-display) ${isWinner ? "text-[#FACC15]" : "text-gray-400"}`}>
             {prize}
           </span>
         )}
