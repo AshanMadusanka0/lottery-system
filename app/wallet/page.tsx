@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { WalletBalanceCard } from "../../components/WalletBalanceCard";
 import { TransactionItem } from "../../components/TransactionItem";
+import { DepositModal } from "../../components/DepositModal";
 
 const transactions = [
   {
@@ -41,6 +44,21 @@ const transactions = [
 ];
 
 export default function WalletPage() {
+  const [balance, setBalance] = useState(2400);
+  const [transactionsState, setTransactionsState] = useState(transactions);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDepositClick = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+  const handleConfirm = (amount: number, method: string) => {
+    setBalance((b) => b + amount);
+    setTransactionsState((prev) => [
+      { type: "deposit", title: "Deposit", description: method, date: new Date().toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "numeric", hour12: true }), amount: `+$${amount}` },
+      ...prev,
+    ]);
+    setShowModal(false);
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-950 to-slate-900 text-white p-8">
       <div className="mb-8">
@@ -50,14 +68,18 @@ export default function WalletPage() {
       </div>
 
       {/* Available Balance Card */}
-      <WalletBalanceCard balance="$2,400" walletId="W-U001" />
+      <WalletBalanceCard
+        balance={`$${balance.toLocaleString()}`}
+        walletId="W-U001"
+        onDeposit={handleDepositClick}
+      />
 
       {/* Transaction History */}
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-6">Transaction History</h2>
         <div className="bg-slate-800 rounded-2xl p-6 border border-slate-700">
           <div className="space-y-0">
-            {transactions.map((transaction, idx) => (
+            {transactionsState.map((transaction, idx) => (
               <TransactionItem
                 key={idx}
                 {...transaction}
@@ -66,6 +88,11 @@ export default function WalletPage() {
           </div>
         </div>
       </div>
+
+      {/* deposit modal */}
+      {showModal && (
+        <DepositModal onClose={handleClose} onConfirm={handleConfirm} />
+      )}
     </div>
   );
 }
