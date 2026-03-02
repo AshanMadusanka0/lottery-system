@@ -19,7 +19,7 @@ export function Nav() {
       {/* Left Section - Logo and Navigation */}
       <div className="flex items-center gap-12">
         {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 mr-4">
+        <Link href="/" className="flex items-center gap-2 mr-4">
           <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-slate-900">
             🎲
           </div>
@@ -31,14 +31,14 @@ export function Nav() {
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <span
-                  className={`text-sm font-medium transition-all cursor-pointer pb-2
-                    ${
-                      pathname === link.href
-                        ? "text-highlight border-b-2 border-yellow-400"
-                        : "muted hover:text-white"
-                    }
-                  `}
-                >
+                className={`text-sm font-medium transition-all cursor-pointer pb-2
+                  ${
+                    pathname === link.href
+                      ? "text-yellow-400 border-b-2 border-yellow-400/50"
+                      : "muted hover:text-white"
+                  }
+                `}
+              >
                 {link.label}
               </span>
             </Link>
