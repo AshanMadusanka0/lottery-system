@@ -21,9 +21,9 @@ export function Nav() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 mr-4">
           <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center font-bold text-slate-900">
-            🤞
+            🎲
           </div>
-          <span className="font-bold text-lg">LuckyVault</span>
+          <span className="font-bold text-lg text-yellow-400">LuckyVault</span>
         </Link>
 
         {/* Navigation Links */}
@@ -50,7 +50,7 @@ export function Nav() {
       <div className="flex items-center gap-6">
         {/* Wallet Balance */}
         <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-slate-700">
-          <span className="text-lg">🔐</span>
+          <span className="text-lg">💰</span>
           <span className="font-semibold text-yellow-400">$2,400</span>
         </div>
 
