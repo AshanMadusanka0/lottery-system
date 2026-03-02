@@ -26,9 +26,13 @@ const tickets = [
 
 export default function MyTicketsPage() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-zinc-50 p-8">
-      <h1 className="text-3xl font-bold mb-6">My Tickets</h1>
-      <div className="flex flex-col gap-8">
+    <div className="min-h-screen bg-linear-to-b from-slate-950 to-slate-900 text-white p-8">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold mb-2">My Tickets</h1>
+        <p className="text-gray-400 text-sm mb-4">All your number entries and their results</p>
+        <div className="h-1 bg-linear-to-r from-yellow-400 to-transparent w-full"></div>
+      </div>
+      <div className="flex flex-col gap-6">
         {tickets.map((ticket, idx) => (
           <TicketCard key={idx} {...ticket} />
         ))}

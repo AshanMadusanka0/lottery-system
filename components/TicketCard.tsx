@@ -21,80 +21,105 @@ export const TicketCard: React.FC<TicketCardProps> = ({
   prize,
   date,
 }) => {
-  const numberBubble = (n: number, key: React.Key) => (
-    <span
+  const isWinner = status === "winner";
+  const isAwaiting = status === "awaiting";
+
+  // Determine color scheme based on status
+  const primaryColor = isWinner ? "#00D9D9" : "#1E293B"; // Cyan for winner, dark blue for awaiting
+  const accentColor = isWinner ? "#FCD34D" : "#94A3B8"; // Gold for winner, silver for awaiting
+  const numColor = isWinner ? "#00D9D9" : "#FCD34D"; // Cyan for winner, gold for awaiting
+
+  const numberBubble = (n: number, key: React.Key, isDrawResult: boolean = false) => (
+    <div
       key={key}
-      className="w-8 h-8 flex items-center justify-center rounded-full bg-green-500 text-white font-semibold"
+      className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-sm
+        ${
+          isDrawResult
+            ? `border-2 ${isWinner ? "border-yellow-500 text-yellow-500" : "border-yellow-600 text-yellow-600"}`
+            : `${isWinner ? "bg-cyan-400 text-slate-900" : "bg-yellow-400 text-slate-900"}`
+        }
+      `}
     >
       {n}
-    </span>
+    </div>
   );
 
-  const renderStatus = () => {
-    if (status === "winner") {
-      return (
-        <div className="mt-2 flex items-center space-x-2 text-yellow-400">
-          <span className="text-sm font-semibold">🏆 Winner</span>
-          {prize && <span className="text-xs">{prize}</span>}
-        </div>
-      );
-    }
-
-    if (status === "awaiting") {
-      return (
-        <div className="mt-2 flex items-center space-x-2 text-blue-300">
-          <span className="text-sm font-semibold">⏳ Awaiting Draw</span>
-          {prize && <span className="text-xs">{prize}</span>}
-        </div>
-      );
-    }
-
-    return (
-      <div className="mt-2 text-sm text-gray-400">
-        {prize && prize}
-      </div>
-    );
-  };
+  const bonusBubble = (num: number, isDrawResult: boolean = false) => (
+    <div
+      className={`w-10 h-10 flex items-center justify-center rounded-full font-bold text-sm
+        ${
+          isDrawResult
+            ? `border-2 border-pink-500 text-pink-500`
+            : `bg-pink-500 text-white`
+        }
+      `}
+    >
+      + <span className="ml-1">{num}</span>
+    </div>
+  );
 
   return (
     <div
-      className={`relative w-full rounded-xl p-6 space-y-4 dark:bg-zinc-800 bg-zinc-100
-        ${status === "winner" ? "border-2 border-yellow-400" : ""}`}
+      className={`relative w-full rounded-2xl p-6 space-y-5 backdrop-blur-sm
+        ${isWinner ? "bg-slate-800 border-2 border-cyan-400" : "bg-slate-800 border border-slate-700"}
+      `}
     >
-      <div className="flex justify-between items-center">
+      {/* Header */}
+      <div className="flex justify-between items-start">
         <div>
-          <h3 className="text-lg font-semibold text-white dark:text-white">
-            {gameTitle}
-          </h3>
-          <p className="text-xs text-blue-300">{ticketId}</p>
+          <h3 className="text-2xl font-bold text-white">{gameTitle}</h3>
+          <p className="text-xs text-cyan-400 mt-1">{ticketId}</p>
         </div>
-        <p className="text-xs text-zinc-400">{date}</p>
+        <p className="text-xs text-gray-400">{date}</p>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {numbers.map((n, idx) => numberBubble(n, idx))}
-        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-500 text-white">
-          + {bonus}
-        </span>
+      {/* Your Numbers Section */}
+      <div>
+        <p className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-wide">Your Numbers</p>
+        <div className="flex flex-wrap gap-3">
+          {numbers.map((n, idx) => numberBubble(n, idx))}
+          {bonusBubble(bonus)}
+        </div>
       </div>
 
+      {/* Draw Result Section */}
       {drawResult && (
-        <div className="flex flex-wrap gap-2">
-          {drawResult.numbers.map((n, idx) => (
-            <span
-              key={`dr-${idx}`}
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-yellow-600 text-white"
-            >
-              {n}
-            </span>
-          ))}
-          <span className="w-8 h-8 flex items-center justify-center rounded-full bg-red-600 text-white">
-            + {drawResult.bonus}
-          </span>
+        <div>
+          <p className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-wide">Draw Result</p>
+          <div className="flex flex-wrap gap-3">
+            {drawResult.numbers.map((n, idx) => numberBubble(n, `dr-${idx}`, true))}
+            {bonusBubble(drawResult.bonus, true)}
+          </div>
         </div>
       )}
 
-      {renderStatus()}
+      {/* Status and Prize Section */}
+      <div className="flex items-center justify-between pt-2">
+        <div>
+          {isWinner && (
+            <div className="flex items-center gap-2">
+              <div className="bg-yellow-500 rounded-full p-1">
+                <span className="text-white font-bold text-xs">✓</span>
+              </div>
+              <span className="text-sm font-semibold text-white">Winner</span>
+              <span className="text-xs text-gray-400">Matched 6 numbers + Bonus ♦</span>
+            </div>
+          )}
+          {isAwaiting && (
+            <div className="flex items-center gap-2">
+              <div className="bg-slate-600 rounded-full p-1">
+                <span className="text-white font-bold text-xs">⏳</span>
+              </div>
+              <span className="text-sm font-semibold text-white">Awaiting Draw</span>
+            </div>
+          )}
+        </div>
+        {prize && (
+          <span className={`text-lg font-bold ${isWinner ? "text-yellow-400" : "text-gray-400"}`}>
+            {prize}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
