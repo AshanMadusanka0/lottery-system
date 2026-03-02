@@ -33,7 +33,15 @@ export default function MyTicketsPage() {
       </div>
       <div className="flex flex-col gap-6">
         {tickets.map((ticket, idx) => (
-          <TicketCard key={idx} {...ticket} />
+          <TicketCard
+            key={idx}
+            {...ticket}
+            cardClass={
+              ticket.gameTitle === "MegaGold"
+                ? "bg-[#111827] !border !border-[#1E293B] !border-t-2 !border-t-[#FACC15] rounded-2xl"
+                : undefined
+            }
+          />
         ))}
       </div>
     </div>

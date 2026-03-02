@@ -9,6 +9,7 @@ interface TicketCardProps {
   status: "winner" | "awaiting" | "loser";
   prize?: string;
   date: string;
+  cardClass?: string;
 }
 
 export const TicketCard: React.FC<TicketCardProps> = ({
@@ -20,6 +21,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
   status,
   prize,
   date,
+  cardClass,
 }) => {
   const isWinner = status === "winner";
   const isAwaiting = status === "awaiting";
@@ -58,10 +60,13 @@ export const TicketCard: React.FC<TicketCardProps> = ({
     </div>
   );
 
+  const baseClass = `relative w-full p-6 space-y-5 backdrop-blur-sm rounded-2xl card`;
+  const computedClass = cardClass
+    ? `${baseClass} ${cardClass}`
+    : `${baseClass} ${isWinner ? "border-2 border-cyan-400" : "border"}`;
+
   return (
-    <div
-      className={`relative w-full rounded-2xl p-6 space-y-5 backdrop-blur-sm card border-t-2 border-t-yellow-400 ${isWinner ? "border-2 border-cyan-400" : "border"}`}
-    >
+    <div className={computedClass}>
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -99,7 +104,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
               <div className="bg-yellow-500 rounded-full p-1">
                 <span className="text-white font-bold text-xs">✓</span>
               </div>
-              <span className="text-sm font-semibold text-white">Winner</span>
+              <span className="text-sm font-semibold text-yellow-500">Winner</span>
               <span className="text-xs text-gray-400">Matched 6 numbers + Bonus ♦</span>
             </div>
           )}
@@ -108,7 +113,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
               <div className="bg-slate-600 rounded-full p-1">
                 <span className="text-white font-bold text-xs">⏳</span>
               </div>
-              <span className="text-sm font-semibold text-white">Awaiting Draw</span>
+              <span className="text-sm font-semibold text-cyan-400">Awaiting Draw</span>
             </div>
           )}
         </div>
