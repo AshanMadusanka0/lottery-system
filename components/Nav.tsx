@@ -27,7 +27,7 @@ export function Nav() {
         </Link>
 
         {/* Navigation Links */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <span
