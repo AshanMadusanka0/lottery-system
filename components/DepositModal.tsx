@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import React, { useEffect, useState } from "react";
 
 interface DepositModalProps {
@@ -44,7 +42,7 @@ export const DepositModal: React.FC<DepositModalProps> = ({ onClose, onConfirm }
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="bg-slate-800 rounded-2xl w-96 p-6 relative shadow-xl">
+      <div className="card rounded-2xl w-96 p-6 relative shadow-xl">
         <button
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-200"
           onClick={onClose}

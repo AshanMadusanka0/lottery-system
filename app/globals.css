@@ -24,3 +24,68 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Global Dark Theme Variables (scoped for app) */
+:root {
+  --bg-primary: #0B1120; /* Main app background */
+  --bg-secondary: #0F172A; /* Section background */
+  --bg-tertiary: #111827; /* Elevated background */
+
+  --navbar-bg: #0F172A;
+  --navbar-border: #1E293B;
+  --navbar-text: #F9FAFB;
+  --navbar-text-muted: #9CA3AF;
+  --navbar-active: #FACC15;
+
+  --card-bg: #111827;
+  --card-hover: #1F2937;
+  --card-border: #1E293B;
+  --card-shadow: rgba(0,0,0,0.4);
+
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --text-highlight: #FACC15;
+
+  --status-success: #22C55E;
+  --status-danger: #EF4444;
+  --status-warning: #F59E0B;
+  --status-info: #3B82F6;
+}
+
+/* Utility classes using the theme */
+.app-bg {
+  background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+  color: var(--text-primary);
+}
+
+.navbar-app {
+  background: linear-gradient(90deg, var(--navbar-bg), var(--bg-primary));
+  color: var(--navbar-text);
+  border-bottom: 1px solid var(--navbar-border);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 18px var(--card-shadow);
+}
+
+.card-hover:hover {
+  background: var(--card-hover);
+}
+
+.text-highlight {
+  color: var(--text-highlight);
+}
+
+.muted {
+  color: var(--text-secondary);
+}
+
+/* Centered content container */
+.app-container {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
