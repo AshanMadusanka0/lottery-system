@@ -60,7 +60,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
 
   return (
     <div
-      className={`relative w-full rounded-2xl p-6 space-y-5 backdrop-blur-sm card ${isWinner ? "border-2 border-cyan-400" : "border"}`}
+      className={`relative w-full rounded-2xl p-6 space-y-5 backdrop-blur-sm card border-t-2 border-t-yellow-400 ${isWinner ? "border-2 border-cyan-400" : "border"}`}
     >
       {/* Header */}
       <div className="flex justify-between items-start">

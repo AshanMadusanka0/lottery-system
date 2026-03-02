@@ -64,7 +64,6 @@ export default function WalletPage() {
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">My Wallet</h1>
         <p className="text-gray-400 text-sm mb-4">Manage balance and transactions</p>
-        <div className="h-1 bg-linear-to-r from-yellow-400 to-transparent w-full"></div>
       </div>
 
       {/* Available Balance Card */}

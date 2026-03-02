@@ -12,7 +12,7 @@ export const WalletBalanceCard: React.FC<WalletBalanceCardProps> = ({
   onDeposit,
 }) => {
   return (
-    <div className="card rounded-2xl p-8 w-full">
+    <div className="card rounded-2xl p-8 w-full border-t-2 border-t-yellow-400">
       <p className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-wide">
         Available Balance
       </p>

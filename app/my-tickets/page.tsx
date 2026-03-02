@@ -27,10 +27,9 @@ const tickets = [
 export default function MyTicketsPage() {
   return (
     <div>
-      <div className="mb-8">
+      <div className="mb-8 ">
         <h1 className="text-4xl font-bold mb-2">My Tickets</h1>
         <p className="text-gray-400 text-sm mb-4">All your number entries and their results</p>
-        <div className="h-1 bg-linear-to-r from-yellow-400 to-transparent w-full"></div>
       </div>
       <div className="flex flex-col gap-6">
         {tickets.map((ticket, idx) => (
