@@ -27,11 +27,11 @@ body {
 
 /* Global Dark Theme Variables (scoped for app) */
 :root {
-  --bg-primary: #0B1120; /* Main app background */
+  --bg-primary: #050810; /* Main app background */
   --bg-secondary: #0F172A; /* Section background */
   --bg-tertiary: #111827; /* Elevated background */
 
-  --navbar-bg: #0F172A;
+  --navbar-bg: #050810;
   --navbar-border: #1E293B;
   --navbar-text: #F9FAFB;
   --navbar-text-muted: #9CA3AF;

@@ -38,7 +38,7 @@ export default function MyTicketsPage() {
             {...ticket}
             cardClass={
               ticket.gameTitle === "MegaGold"
-                ? "bg-[#111827] !border !border-[#1E293B] !border-t-2 !border-t-[#FACC15] rounded-2xl"
+                ? "bg-[#050810] !border !border-[#1E293B] !border-t-2 !border-t-[#FACC15] rounded-2xl"
                 : undefined
             }
           />
