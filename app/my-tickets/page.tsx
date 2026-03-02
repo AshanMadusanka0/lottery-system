@@ -26,7 +26,7 @@ const tickets = [
 
 export default function MyTicketsPage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-950 to-slate-900 text-white p-8">
+    <div>
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">My Tickets</h1>
         <p className="text-gray-400 text-sm mb-4">All your number entries and their results</p>
